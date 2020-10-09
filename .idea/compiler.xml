@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="excelsea-module" />
+        <module name="excelsea-event" />
+        <module name="excelsea-io" />
+        <module name="excelsea-log" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="excelsea" target="11" />
+      <module name="excelsea-event" target="11" />
+      <module name="excelsea-io" target="11" />
+      <module name="excelsea-log" target="11" />
+      <module name="excelsea-module" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
