@@ -5,6 +5,7 @@
       <map />
     </option>
   </component>
+  <component name="ExternalSystem" linkedProjectPath="$MODULE_DIR$/excelsea" rootProjectPath="$MODULE_DIR$/excelsea" />
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$" />

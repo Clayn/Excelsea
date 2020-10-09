@@ -1,16 +1,16 @@
 package de.clayntech.excelsea.event;
 
+import de.clayntech.excelsea.common.Stub;
 import de.clayntech.excelsea.event.impl.EventBusImpl;
 
-public final class EventBusStub implements EventBus {
-    private final EventBus delegate;
+public final class EventBusStub extends Stub<EventBus> implements EventBus {
 
     public EventBusStub() {
         this(new EventBusImpl());
     }
 
     public EventBusStub(EventBus delegate) {
-        this.delegate = delegate;
+        super(delegate);
     }
 
     @Override

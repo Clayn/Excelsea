@@ -9,17 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>excelsea-module</artifactId>
+    <artifactId>excelsea-fw</artifactId>
     <dependencies>
         <dependency>
             <groupId>de.clayntech</groupId>
-            <artifactId>excelsea-log</artifactId>
+            <artifactId>excelsea-module</artifactId>
             <version>0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>de.clayntech</groupId>
-            <artifactId>excelsea-common</artifactId>
+            <artifactId>excelsea-event</artifactId>
             <version>0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

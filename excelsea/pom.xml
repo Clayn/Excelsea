@@ -17,6 +17,8 @@
         <module>excelsea-io</module>
         <module>excelsea-event</module>
         <module>excelsea-module</module>
+        <module>excelsea-fw</module>
+        <module>excelsea-common</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

@@ -8,6 +8,11 @@ import de.clayntech.excelsea.event.EventType;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+/**
+ * Simple implementation of the {@link EventBus} interface. The dispatching of events is done
+ * in a separate thread that gets started when an instance is created. That thread will be a
+ * daemon thread so will not prevent the application from being closed.
+ */
 public class EventBusImpl extends AbstractEventProducer implements EventBus {
 
     private final Queue<Event> eventQueue=new ArrayDeque<>();

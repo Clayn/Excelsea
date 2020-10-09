@@ -1,5 +1,6 @@
 package de.clayntech.excelsea.module;
 
+
 import java.util.function.Supplier;
 
 public interface ModuleManager {
@@ -22,4 +23,8 @@ public interface ModuleManager {
      * @param <T> the type of the module.
      */
     <T> void register(Class<T> moduleClass, Supplier<T> factory);
+
+    default <T> void registerModule(Class<T> moduleClass, T val) {
+        register(moduleClass,()->val);
+    }
 }
