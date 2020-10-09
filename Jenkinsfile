@@ -4,17 +4,19 @@ node {
     def jdk8=tool name:'JDK 1.8'
     env.JAVA_HOME = "${jdk}"
 
-    dir('excelsea') {
-        stage('Preparation') {
-            checkout scm
-            mvnHome = tool 'Maven'
+    stage('Preparation') {
+        checkout scm
+        mvnHome = tool 'Maven'
+        dir('excelsea') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' clean"
             } else {
                 bat(/"${mvnHome}\bin\mvn" clean/)
             }
         }
+    }
 
+    dir('excelsea') {
         stage('Build') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' -DskipTests install"
@@ -22,7 +24,6 @@ node {
                 bat(/"${mvnHome}\bin\mvn" -DskipTests install/)
             }
         }
-
         stage('Test') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore=true test"
@@ -38,7 +39,6 @@ node {
                 bat(/"${mvnHome}\bin\mvn" -DskipTests site/)
             }
         }
-
         stage('Results') {
             junit allowEmptyResults: true, testResults: '**/TEST-*.xml'
         }
