@@ -11,12 +11,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <distributionManagement>
-        <site>
-            <id>clayn</id>
-            <url>file:///${project.basedir}/doc</url>
-        </site>
-    </distributionManagement>
 
     <groupId>de.clayntech</groupId>
     <artifactId>excelsea</artifactId>

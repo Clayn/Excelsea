@@ -36,10 +36,10 @@ node {
         stage('Reporting') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' compile -DskipTests site"
-                sh "'${mvnHome}/bin/mvn' compile -DskipTests site:stage"
+                sh "'${mvnHome}/bin/mvn' compile -DaltDeploymentRepository=clayn::default::${docu_dir} -DskipTests site:deploy"
             } else {
                 bat(/"${mvnHome}\bin\mvn" compile -DskipTests site/)
-                bat(/"${mvnHome}\bin\mvn" compile  -DskipTests site:stage/)
+                bat(/"${mvnHome}\bin\mvn" compile -DaltDeploymentRepository=clayn::default::${docu_dir} -DskipTests site:deploy/)
             }
         }
         stage('Results') {
