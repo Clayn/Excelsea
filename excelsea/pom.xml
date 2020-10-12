@@ -11,7 +11,7 @@
         <distUrl>file:///${project.basedir}/doc</distUrl>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <url>http://www.clayncraft.de/excelsea/</url>
     <distributionManagement>
         <site>
             <id>clayn</id>
