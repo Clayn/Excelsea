@@ -26,6 +26,7 @@ public class ModuleManagerImpl implements ModuleManager {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> ModuleHandle<T> getModule(Class<T> moduleClass) {
         if(!handles.containsKey(moduleClass)) {
             handles.put(moduleClass,new ModuleHandleImpl<T>(new Supplier<T>() {
@@ -56,9 +57,8 @@ public class ModuleManagerImpl implements ModuleManager {
         if(factories.containsKey(moduleClass)&&!isAllowingFactoryOverride()) {
             throw new RuntimeException("Can't overwrite factory registered for "+moduleClass);
         }
-
         factories.put(moduleClass,factory);
-        if(refreshChecks.containsKey(moduleClass)) {
+        if(!refreshChecks.containsKey(moduleClass)) {
             refreshChecks.put(moduleClass,new AtomicBoolean(true));
         }
         refreshChecks.get(moduleClass).set(true);

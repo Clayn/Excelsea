@@ -2,6 +2,7 @@ node {
     def mvnHome
     def jdk = tool name: 'JDK 14'
     def jdk8=tool name:'JDK 1.8'
+    def docu_dir=env.excelsea_doc
     env.JAVA_HOME = "${jdk}"
 
     stage('Preparation') {
@@ -34,9 +35,11 @@ node {
 
         stage('Reporting') {
             if (isUnix()) {
-                sh "'${mvnHome}/bin/mvn' -DskipTests site"
+                sh "'${mvnHome}/bin/mvn' compile -DskipTests site"
+                sh "'${mvnHome}/bin/mvn' compile -DaltDeploymentRepository=clayn::default::${docu_dir} -DskipTests site:deploy"
             } else {
-                bat(/"${mvnHome}\bin\mvn" -DskipTests site/)
+                bat(/"${mvnHome}\bin\mvn" compile -DskipTests site/)
+                bat(/"${mvnHome}\bin\mvn" compile -DaltDeploymentRepository=clayn::default::${docu_dir} -DskipTests site:deploy/)
             }
         }
         stage('Results') {

@@ -1,10 +1,12 @@
 package de.clayntech.excelsea.io;
 
+import de.clayntech.excelsea.log.ExcelseaLoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
+import org.slf4j.Logger;
 
 /**
  * This class represents a copy process from a source to a destination.
@@ -12,9 +14,14 @@ import java.util.function.DoubleConsumer;
  * {@code InputStream} and an {@code OutputStream}.
  */
 public class Copy {
+    private static final Logger LOG= ExcelseaLoggerFactory.getLogger();
     private Source from;
     private Destination to;
     private long size=-1;
+
+    public Copy() {
+        this(null,null);
+    }
 
     public Copy(Source from, Destination to) {
         this.from = from;
@@ -67,7 +74,7 @@ public class Copy {
         long done=0;
         try(InputStream in=from.open(); OutputStream out=to.open()) {
             int read=0;
-            while((read=in.read(buffer))!=0) {
+            while((read=in.read(buffer))!=-1) {
                 done+=read;
                 out.write(buffer,0,read);
                 if(progressConsumer!=null) {

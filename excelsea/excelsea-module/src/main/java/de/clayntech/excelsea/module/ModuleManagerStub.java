@@ -5,6 +5,10 @@ import de.clayntech.excelsea.module.impl.ModuleManagerImpl;
 
 import java.util.function.Supplier;
 
+/**
+ * Stub that wraps a {@link ModuleManager} implementation. This is used
+ * to provide a default implementation (by using the no args constructor) without exposing the API for it.
+ */
 public class ModuleManagerStub extends Stub<ModuleManager> implements ModuleManager {
 
     public ModuleManagerStub() {
