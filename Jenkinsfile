@@ -36,10 +36,10 @@ node {
         stage('Reporting') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' compile -DskipTests site"
-                sh "'${mvnHome}/bin/mvn' -P jenkins -DskipTests site:stage-deploy"
+                sh "'${mvnHome}/bin/mvn' -P jenkins -DskipTests site:deploy"
             } else {
                 bat(/"${mvnHome}\bin\mvn" compile -DskipTests site/)
-                bat(/"${mvnHome}\bin\mvn" -P jenkins -DskipTests site:stage-deploy/)
+                bat(/"${mvnHome}\bin\mvn" -P jenkins -DskipTests site:deploy/)
             }
         }
         stage('Results') {
