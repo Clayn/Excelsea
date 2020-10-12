@@ -8,15 +8,28 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <description>
-    This project features an event system that you can use for your application.
-    You may use the provided implementation or find a different one better suiting your requirements.
-    </description>
-    <artifactId>excelsea-event</artifactId>
+
+    <artifactId>excelsea-fx</artifactId>
     <dependencies>
         <dependency>
             <groupId>de.clayntech</groupId>
             <artifactId>excelsea-common</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>14</version>
+        </dependency>
+        <dependency>
+            <groupId>de.clayntech</groupId>
+            <artifactId>excelsea-log</artifactId>
             <version>0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

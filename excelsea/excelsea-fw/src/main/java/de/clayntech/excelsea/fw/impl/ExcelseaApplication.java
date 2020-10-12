@@ -1,4 +1,4 @@
-package de.clayntech.excelsea.fw;
+package de.clayntech.excelsea.fw.impl;
 
 import de.clayntech.excelsea.event.EventBus;
 import de.clayntech.excelsea.module.ModuleManager;
@@ -10,7 +10,7 @@ public class ExcelseaApplication {
     private final EventBus eventBus;
     private final String name;
 
-     ExcelseaApplication(ModuleManager moduleManager, EventBus eventBus,String name) {
+     protected ExcelseaApplication(ModuleManager moduleManager, EventBus eventBus,String name) {
         this.moduleManager = Objects.requireNonNull(moduleManager);
         this.eventBus = Objects.requireNonNull(eventBus);
         this.name=Objects.requireNonNull(name);

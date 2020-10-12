@@ -18,7 +18,10 @@
             <url>${distUrl}</url>
         </site>
     </distributionManagement>
-
+    <ciManagement>
+        <system>jenkins</system>
+        <url>http://www.clayncraft.de:8080/job/Excelsea/</url>
+    </ciManagement>
     <groupId>de.clayntech</groupId>
     <artifactId>excelsea</artifactId>
     <version>0.1-SNAPSHOT</version>
@@ -29,6 +32,7 @@
         <module>excelsea-module</module>
         <module>excelsea-fw</module>
         <module>excelsea-common</module>
+        <module>excelsea-fx</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
