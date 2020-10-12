@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public interface Source {
-    InputStream open() throws IOException;
+    InputStream openRead() throws IOException;
 
     static Source raw(InputStream in) {
         return ()->in;

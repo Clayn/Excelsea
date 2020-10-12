@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public interface Destination {
-    OutputStream open() throws IOException;
+    OutputStream openWrite() throws IOException;
 
     static Destination raw(OutputStream out) {
         return ()->out;
