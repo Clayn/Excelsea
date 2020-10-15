@@ -4,13 +4,11 @@ import de.clayntech.excelsea.common.impl.i18n.LanguageManagerImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
-import java.util.PropertyResourceBundle;
 
 public class LanguageManagerTest {
     private static final Logger LOG= LoggerFactory.getLogger(LanguageManagerTest.class);
@@ -31,12 +29,9 @@ public class LanguageManagerTest {
     @Test
     public void testSetLanguageUnknown() {
         manager.addResourceBundle("i18n-1");
-        Assertions.assertThrows(RuntimeException.class, new Executable() {
-            @Override
-            public void execute() throws Throwable {
-                manager.setLocale(Locale.FRANCE);
-                LOG.debug("Translation: {}",manager.getTranslation("Key"));
-            }
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            manager.setLocale(Locale.FRANCE);
+            LOG.debug("Translation: {}",manager.getTranslation("Key"));
         });
     }
 
@@ -51,11 +46,6 @@ public class LanguageManagerTest {
 
     @Test
     public void testAddResourceBundleErrorNotExisting() {
-        Assertions.assertThrows(MissingResourceException.class, new Executable() {
-            @Override
-            public void execute() throws Throwable {
-                manager.addResourceBundle("i18n-0");
-            }
-        });
+        Assertions.assertThrows(MissingResourceException.class, () -> manager.addResourceBundle("i18n-0"));
     }
 }

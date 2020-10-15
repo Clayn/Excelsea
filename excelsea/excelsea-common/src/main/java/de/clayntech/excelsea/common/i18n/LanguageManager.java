@@ -1,6 +1,5 @@
 package de.clayntech.excelsea.common.i18n;
 
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 

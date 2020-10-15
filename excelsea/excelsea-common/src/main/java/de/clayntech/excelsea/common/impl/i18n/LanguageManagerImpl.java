@@ -37,7 +37,7 @@ public class LanguageManagerImpl implements LanguageManager {
         }
     }
 
-    private final List<ResourceBundle> getBundles() {
+    private List<ResourceBundle> getBundles() {
         return bundles.stream()
                 .map(ResourceBundleHandle::getBundle)
                 .collect(Collectors.toList());

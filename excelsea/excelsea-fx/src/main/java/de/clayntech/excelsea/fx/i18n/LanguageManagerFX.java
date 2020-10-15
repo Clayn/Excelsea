@@ -11,7 +11,6 @@ import javafx.scene.control.Labeled;
 import org.slf4j.Logger;
 
 import java.util.Locale;
-import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +31,7 @@ public class LanguageManagerFX extends LanguageManagerImpl {
     public void bindTranslation(Labeled labeled) {
         String text=labeled.getText();
         Matcher m=KEY_PATTERN.matcher(text);
-        String key=null;
+        String key;
         if(m.find()) {
             key=m.group(1);
         }else {
@@ -47,12 +46,7 @@ public class LanguageManagerFX extends LanguageManagerImpl {
 
     public StringProperty getTranslationProperty(String key) {
         StringProperty prop=new SimpleStringProperty();
-        prop.bind(Bindings.createStringBinding(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return getTranslation(key);
-            }
-        },locale));
+        prop.bind(Bindings.createStringBinding(() -> getTranslation(key),locale));
         return prop;
     }
 

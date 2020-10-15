@@ -33,7 +33,7 @@ public class ReadOnlyFileTest {
     }
 
     @Test
-    public void testWriteFile() throws IOException {
+    public void testWriteFile()  {
         ReadOnlyTypedFile roFile=new ReadOnlyTypedFile(testFile) {
 
         };

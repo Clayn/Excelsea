@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 public class ModuleManagerImpl implements ModuleManager {
@@ -29,25 +28,12 @@ public class ModuleManagerImpl implements ModuleManager {
     @SuppressWarnings("unchecked")
     public <T> ModuleHandle<T> getModule(Class<T> moduleClass) {
         if(!handles.containsKey(moduleClass)) {
-            handles.put(moduleClass,new ModuleHandleImpl<T>(new Supplier<T>() {
-                @Override
-                public T get() {
-                    T val=(T) Optional.ofNullable(factories.get(moduleClass)).map(Supplier::get)
-                            .orElse(null);
-                    refreshChecks.get(moduleClass).set(val==null);
-                    return val;
-                }
-            }, new BooleanSupplier() {
-                @Override
-                public boolean getAsBoolean() {
-                    return refreshChecks.get(moduleClass).get();
-                }
-            }, new BooleanSupplier() {
-                @Override
-                public boolean getAsBoolean() {
-                    return factories.containsKey(moduleClass);
-                }
-            }));
+            handles.put(moduleClass, new ModuleHandleImpl<>((Supplier<Object>) () -> {
+                T val = (T) Optional.ofNullable(factories.get(moduleClass)).map(Supplier::get)
+                        .orElse(null);
+                refreshChecks.get(moduleClass).set(val == null);
+                return val;
+            }, () -> refreshChecks.get(moduleClass).get(), () -> factories.containsKey(moduleClass)));
         }
         return (ModuleHandle<T>) handles.get(moduleClass);
     }

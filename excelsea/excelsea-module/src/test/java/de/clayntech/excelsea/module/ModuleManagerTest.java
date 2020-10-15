@@ -1,11 +1,9 @@
 package de.clayntech.excelsea.module;
 
-import de.clayntech.excelsea.module.impl.ModuleHandleImpl;
 import de.clayntech.excelsea.module.impl.ModuleManagerImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 public class ModuleManagerTest {
     private ModuleManager manager;
@@ -50,11 +48,6 @@ public class ModuleManagerTest {
         String moduled=handle.get();
         Assertions.assertEquals(str,moduled);
         String string2="World Hello";
-        Assertions.assertThrows(RuntimeException.class, new Executable() {
-            @Override
-            public void execute() throws Throwable {
-                manager.registerModule(String.class,string2);
-            }
-        });
+        Assertions.assertThrows(RuntimeException.class, () -> manager.registerModule(String.class,string2));
     }
 }

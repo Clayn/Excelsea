@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ExcelseaFXLauncher {
     private static final Logger LOG= ExcelseaLoggerFactory.getLogger();
     private static final AtomicBoolean created=new AtomicBoolean(false);
-    public static final ExcelseaFXApplication launch(ExcelseaFXContext context) {
+    public static ExcelseaFXApplication launch(ExcelseaFXContext context) {
         synchronized (ExcelseaLauncher.class) {
             if(created.get()) {
                 return (ExcelseaFXApplication) Excelsea.getApplication();

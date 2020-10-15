@@ -14,7 +14,7 @@ import java.util.function.DoubleConsumer;
 
 public class CopyTest {
     @Test
-    public void testCopyProcess() throws InterruptedException, IOException {
+    public void testCopyProcess() throws IOException {
         byte[] srcData="HelloWorld".getBytes(StandardCharsets.UTF_8);
         byte[] destData;
         DoubleConsumer consumer=Mockito.mock(DoubleConsumer.class);

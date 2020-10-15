@@ -31,6 +31,7 @@ public abstract class TypedFile implements Source,Destination {
         return Files.newInputStream(file.toPath());
     }
 
+    @SuppressWarnings("SameReturnValue")
     public boolean isReadable() {
         return true;
     }

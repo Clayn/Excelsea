@@ -14,7 +14,7 @@ import java.util.function.DoubleConsumer;
  * {@code InputStream} and an {@code OutputStream}.
  */
 public class Copy {
-    @SuppressWarnings("unused")
+    @SuppressWarnings("")
     private static final Logger LOG= ExcelseaLoggerFactory.getLogger();
     private Source from;
     private Destination to;

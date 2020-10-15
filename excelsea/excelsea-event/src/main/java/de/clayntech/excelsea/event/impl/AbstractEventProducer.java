@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class AbstractEventProducer implements EventProducer {
     protected final Map<EventType<?>, List<EventListener<?>>> listeners=new HashMap<>();
 
+    @SuppressWarnings("unchecked")
     protected final <E extends Event> List<EventListener<E>> getListeners(EventType<E> type) {
         if(!listeners.containsKey(type)) {
             return Collections.emptyList();
