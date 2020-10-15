@@ -1,5 +1,6 @@
 package de.clayntech.excelsea.fw;
 
+import de.clayntech.excelsea.fw.event.ApplicationStateEvent;
 import de.clayntech.excelsea.fw.impl.ExcelseaApplication;
 import de.clayntech.excelsea.fw.impl.ExcelseaLauncher;
 import de.clayntech.excelsea.log.ExcelseaLoggerFactory;
@@ -12,6 +13,7 @@ public class Excelsea {
     public static void init(ExcelseaContext context) {
         synchronized (Excelsea.class) {
             APPLICATION= ExcelseaLauncher.launch(context);
+            APPLICATION.getEventBus().fireEvent(new ApplicationStateEvent(APPLICATION,ApplicationStateEvent.INIT_DONE));
         }
     }
 

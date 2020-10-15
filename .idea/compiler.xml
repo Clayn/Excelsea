@@ -11,6 +11,7 @@
         <module name="excelsea-fx" />
         <module name="excelsea-fw" />
         <module name="excelsea-module" />
+        <module name="excelsea-example" />
         <module name="excelsea-common" />
         <module name="excelsea-log" />
       </profile>
@@ -19,6 +20,7 @@
       <module name="excelsea" target="11" />
       <module name="excelsea-common" target="11" />
       <module name="excelsea-event" target="11" />
+      <module name="excelsea-example" target="11" />
       <module name="excelsea-fw" target="11" />
       <module name="excelsea-fx" target="11" />
       <module name="excelsea-io" target="11" />

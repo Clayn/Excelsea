@@ -1,6 +1,8 @@
 package de.clayntech.excelsea.common.impl.i18n;
 
 import de.clayntech.excelsea.common.i18n.LanguageManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,15 +11,20 @@ public class LanguageManagerImpl implements LanguageManager {
     private final List<ResourceBundle> bundles=new ArrayList<>();
     private Locale language=Locale.getDefault();
 
+    private static final Logger LOG= LoggerFactory.getLogger(LanguageManagerImpl.class);
     private void rebuildResourceBundles() {
         List<ResourceBundle> newBundles=bundles
                 .stream()
                 .map(ResourceBundle::getBaseBundleName)
-                .map((base)->ResourceBundle.getBundle(base,language))
+                .map((base)->{
+                    LOG.debug("Load bundle {} for language {}",base,language);
+                    return ResourceBundle.getBundle(base,language);
+                })
                 .collect(Collectors.toList());
         bundles.clear();
         bundles.addAll(newBundles);
     }
+
 
     @Override
     public void addResourceBundle(ResourceBundle bundle) {
