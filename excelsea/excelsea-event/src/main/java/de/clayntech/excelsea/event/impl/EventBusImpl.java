@@ -7,6 +7,7 @@ import de.clayntech.excelsea.event.EventType;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.function.Consumer;
 
 /**
  * Simple implementation of the {@link EventBus} interface. The dispatching of events is done
@@ -17,6 +18,7 @@ import java.util.Queue;
 public class EventBusImpl extends AbstractEventProducer implements EventBus {
 
     private final Queue<Event> eventQueue=new ArrayDeque<>();
+    private Consumer<Runnable> executor=null;
     private final Thread dispatchThread=new Thread(() -> {
         Queue<Event> localQueue=new ArrayDeque<>();
         while(!Thread.interrupted()) {
@@ -27,7 +29,11 @@ public class EventBusImpl extends AbstractEventProducer implements EventBus {
             for(Event e:localQueue) {
                 EventType<?> type=e.getType();
                 for(EventListener listener:getListeners(type)) {
-                    listener.handle(e);
+                    if(executor==null) {
+                        listener.handle(e);
+                    }else {
+                        executor.accept(()->listener.handle(e));
+                    }
                 }
             }
             synchronized (eventQueue) {
@@ -41,6 +47,15 @@ public class EventBusImpl extends AbstractEventProducer implements EventBus {
             }
         }
     },"Excelsea-EventBus-Impl");
+
+
+    public EventBusImpl(Consumer<Runnable> executor) {
+        this.executor = executor;
+    }
+
+    public EventBusImpl() {
+        this(null);
+    }
 
     {
         dispatchThread.setDaemon(true);

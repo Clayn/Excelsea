@@ -12,8 +12,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="excelsea-fw" />
-    <orderEntry type="module" module-name="excelsea-common" />
-    <orderEntry type="module" module-name="excelsea-fw" />
     <orderEntry type="module" module-name="excelsea-module" />
     <orderEntry type="module" module-name="excelsea-log" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />

@@ -33,7 +33,7 @@
         <module>excelsea-fw</module>
         <module>excelsea-common</module>
         <module>excelsea-fx</module>
-        <!-- <module>excelsea-example</module> -->
+        <module>excelsea-example</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
