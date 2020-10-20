@@ -6,6 +6,7 @@ import de.clayntech.excelsea.fw.fx.ExcelseaFXContext;
 import de.clayntech.excelsea.fw.impl.ExcelseaLauncher;
 import de.clayntech.excelsea.log.ExcelseaLoggerFactory;
 import de.clayntech.excelsea.module.ModuleManager;
+import javafx.application.Application;
 import org.slf4j.Logger;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -23,6 +24,8 @@ public class ExcelseaFXLauncher {
             EventBus bus = context.getEventBus();
             manager.registerModule(EventBus.class, bus);
             created.set(true);
+            Class<? extends Application> applicationClass=context.getApplicationClass();
+            Application.launch(applicationClass);
             return new ExcelseaFXApplication(manager, bus,context.getApplicationName());
         }
     }

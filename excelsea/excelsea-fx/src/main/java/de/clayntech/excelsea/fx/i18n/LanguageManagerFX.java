@@ -7,6 +7,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Labeled;
 import org.slf4j.Logger;
 
@@ -18,7 +20,7 @@ public class LanguageManagerFX extends LanguageManagerImpl {
     private static final Logger LOG= ExcelseaLoggerFactory.getLogger();
     public static final String TRANSLATION_KEY_PROPERTY="excelsea.fx.i18n.key";
     private static final Pattern KEY_PATTERN=Pattern.compile("§(.+)§");
-    private final ObjectProperty<Locale> locale=new SimpleObjectProperty<>(getLocale());
+    private final ObjectProperty<Locale> locale=new SimpleObjectProperty<>(super.getLocale());
 
     public void bindTranslation(String key,StringProperty property) {
         property.bind(getTranslationProperty(key));
@@ -46,12 +48,18 @@ public class LanguageManagerFX extends LanguageManagerImpl {
 
     public StringProperty getTranslationProperty(String key) {
         StringProperty prop=new SimpleStringProperty();
-        prop.bind(Bindings.createStringBinding(() -> getTranslation(key),locale));
+        prop.bind(Bindings.createStringBinding(() ->getTranslation(key),locale));
         return prop;
     }
 
     @Override
-    public void setLocale(Locale locale) {
+    public Locale getLocale() {
+        locale.get(); //Workaround. Somehow the property won't fire the changes without this
+        return super.getLocale();
+    }
+
+    @Override
+    public final void setLocale(Locale locale) {
         super.setLocale(locale);
         this.locale.set(getLocale());
     }

@@ -29,12 +29,17 @@ public class LanguageManagerImpl implements LanguageManager {
         }
 
         public ResourceBundleHandle changeLocale(Locale locale) {
-            ResourceBundleHandle handle= new ResourceBundleHandle(ResourceBundle.getBundle(baseBundleName,locale),baseBundleName);
-            if(!handle.getBundle().getLocale().equals(locale)) {
-                throw new IllegalArgumentException("No resource bundle can be found for locale '"+locale+"' and bundle name '"+baseBundleName+"'");
-            }
+            ResourceBundleHandle handle= new ResourceBundleHandle(LanguageManagerImpl.getBundle(baseBundleName,locale),baseBundleName);
             return handle;
         }
+    }
+
+    private static ResourceBundle getBundle(String name, Locale locale) {
+        ResourceBundle bundle=ResourceBundle.getBundle(name,locale);
+        if(!bundle.getLocale().equals(locale)) {
+            bundle=ResourceBundle.getBundle(name,Locale.ROOT);
+        }
+        return bundle;
     }
 
     private List<ResourceBundle> getBundles() {
@@ -55,7 +60,7 @@ public class LanguageManagerImpl implements LanguageManager {
 
     @Override
     public void addResourceBundle(String baseName) {
-        bundles.add(new ResourceBundleHandle(ResourceBundle.getBundle(baseName,language),baseName));
+        bundles.add(new ResourceBundleHandle(getBundle(baseName,language),baseName));
     }
 
     @Override

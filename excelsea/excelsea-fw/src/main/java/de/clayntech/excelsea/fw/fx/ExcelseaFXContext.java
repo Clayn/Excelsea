@@ -12,4 +12,8 @@ public class ExcelseaFXContext extends ExcelseaContext {
         super(applicationName);
         this.applicationClass = Objects.requireNonNull(applicationClass);
     }
+
+    public Class<? extends Application> getApplicationClass() {
+        return applicationClass;
+    }
 }

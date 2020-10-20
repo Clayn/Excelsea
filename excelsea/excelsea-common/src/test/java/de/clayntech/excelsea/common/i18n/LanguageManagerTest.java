@@ -27,15 +27,6 @@ public class LanguageManagerTest {
     }
 
     @Test
-    public void testSetLanguageUnknown() {
-        manager.addResourceBundle("i18n-1");
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            manager.setLocale(Locale.FRANCE);
-            LOG.debug("Translation: {}",manager.getTranslation("Key"));
-        });
-    }
-
-    @Test
     public void testSetLanguage() {
         manager.addResourceBundle("i18n-1");
         manager.setLocale(Locale.ENGLISH);
