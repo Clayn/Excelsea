@@ -17,49 +17,48 @@ node {
         }
     }
 
-    stage('Building') {
-        parallel (
-            main: {
-                dir('excelsea') {
-                    stage('Build') {
-                        if (isUnix()) {
-                            sh "'${mvnHome}/bin/mvn' -DskipTests install"
-                        } else {
-                            bat(/"${mvnHome}\bin\mvn" -DskipTests install/)
-                        }
-                    }
-                    stage('Test') {
-                        if (isUnix()) {
-                            sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore=true test"
-                        } else {
-                            bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore=true test/)
-                        }
-                    }
-
-                    stage('Reporting') {
-                        if (isUnix()) {
-                            sh "'${mvnHome}/bin/mvn' -P jenkins compile -DskipTests site"
-                            sh "'${mvnHome}/bin/mvn' -P jenkins -DskipTests site:deploy"
-                        } else {
-                            bat(/"${mvnHome}\bin\mvn" -P jenkins compile -DskipTests site/)
-                            bat(/"${mvnHome}\bin\mvn" -P jenkins -DskipTests site:deploy/)
-                        }
-                    }
-                    stage('Results') {
-                        junit allowEmptyResults: true, testResults: '**/TEST-*.xml'
+    parallel (
+        main: {
+            dir('excelsea') {
+                stage('Build') {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' -DskipTests install"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" -DskipTests install/)
                     }
                 }
-            },
-            archetype: {
-                dir('excelsea/excelsea-archetype') {
-                    stage('Build') {
-                        if (isUnix()) {
-                            sh "'${mvnHome}/bin/mvn' -DskipTests clean install"
-                        } else {
-                            bat(/"${mvnHome}\bin\mvn" -DskipTests clean install/)
-                        }
+                stage('Test') {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore=true test"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore=true test/)
                     }
+                }
+
+                stage('Reporting') {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' -P jenkins compile -DskipTests site"
+                        sh "'${mvnHome}/bin/mvn' -P jenkins -DskipTests site:deploy"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" -P jenkins compile -DskipTests site/)
+                        bat(/"${mvnHome}\bin\mvn" -P jenkins -DskipTests site:deploy/)
+                    }
+                }
+                stage('Results') {
+                    junit allowEmptyResults: true, testResults: '**/TEST-*.xml'
+                }
             }
-        )
-    }
+        },
+        archetype: {
+            dir('excelsea/excelsea-archetype') {
+                stage('Build') {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' -DskipTests clean install"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" -DskipTests clean install/)
+                    }
+                }
+            }
+        }
+    )
 }
