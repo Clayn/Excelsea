@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Excelsea.iml" filepath="$PROJECT_DIR$/.idea/Excelsea.iml" />
       <module fileurl="file://$PROJECT_DIR$/excelsea/excelsea.iml" filepath="$PROJECT_DIR$/excelsea/excelsea.iml" />
+      <module fileurl="file://$PROJECT_DIR$/excelsea/excelsea-archetype/excelsea-archetype.iml" filepath="$PROJECT_DIR$/excelsea/excelsea-archetype/excelsea-archetype.iml" />
       <module fileurl="file://$PROJECT_DIR$/excelsea/excelsea-common/excelsea-common.iml" filepath="$PROJECT_DIR$/excelsea/excelsea-common/excelsea-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/excelsea/excelsea-event/excelsea-event.iml" filepath="$PROJECT_DIR$/excelsea/excelsea-event/excelsea-event.iml" />
       <module fileurl="file://$PROJECT_DIR$/excelsea/excelsea-example/excelsea-example.iml" filepath="$PROJECT_DIR$/excelsea/excelsea-example/excelsea-example.iml" />

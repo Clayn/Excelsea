@@ -34,6 +34,7 @@
         <module>excelsea-common</module>
         <module>excelsea-fx</module>
         <module>excelsea-example</module>
+        <module>excelsea-archetype</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
