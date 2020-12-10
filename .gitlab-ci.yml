@@ -34,7 +34,7 @@ cache:
   script:
     - 'mvn -f ./excelsea/pom.xml $MAVEN_CLI_OPTS verify'
   except:
-    - master
+    - main
 
 # Verify merge requests using JDK8
 verify:jdk11:
@@ -52,4 +52,4 @@ deploy:jdk11:
       fi
     - 'mvn -f ./excelsea/pom.xml $MAVEN_CLI_OPTS install -s ci_settings.xml'
   only:
-    - master
+    - main
